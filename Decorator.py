@@ -1,28 +1,26 @@
-import time
-import math
-import os
+import time, math, os
 
 def ExecTime(Func):
     def InnerFunc(*args, **kwrds):
-        start_time = time.time()
-        Func(*args, **kwrds)
-        end_time = time.time()
-        execution_time = end_time - start_time
-        print(f"Execution time: {execution_time} seconds")
+        StartTime = time.time()
+        A = Func(*args, **kwrds)
+        EndTime = time.time()
+        print(f"Execution time: {EndTime - StartTime} seconds")
+        return A
     return InnerFunc
 
 def FuncName(Func):
     def InnerFunc(*args, **kwrds):
-        Func(*args, **kwrds)
-        FilePath = os.environ['USERPROFILE'] + '\Documents\FuncName.txt'
-        with open(FilePath, 'w') as file:
+        B = Func(*args, **kwrds)
+        with open(os.environ['USERPROFILE'] + '\Documents\FuncName.txt', 'w') as file:
             file.write(f'Function Name : {Func.__name__}')
+        return B
     return InnerFunc
 
 @ExecTime
 @FuncName
-def PrintFunc():
+def Factorial():
     math.factorial(100000)
     return
     
-PrintFunc()
+Factorial()
