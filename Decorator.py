@@ -19,8 +19,7 @@ def FuncName(Func):
 
 @ExecTime
 @FuncName
-def Factorial():
-    math.factorial(100000)
-    return
+def Factorial(N):
+    return math.factorial(N)
     
-Factorial()
+Factorial(100000)
